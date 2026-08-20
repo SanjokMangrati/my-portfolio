@@ -42,7 +42,7 @@ jobs:
       - name: Build site
         run: pnpm run build
         env:
-          PUBLIC_WEB3FORMS_KEY: ${{ secrets.PUBLIC_WEB3FORMS_KEY }}
+          PUBLIC_WEB3FORMS_KEY: ${{ vars.PUBLIC_WEB3FORMS_KEY }}
           PUBLIC_VISITS_ENDPOINT: ${{ vars.PUBLIC_VISITS_ENDPOINT }}
 
       - name: Deploy
