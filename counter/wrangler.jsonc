@@ -11,7 +11,7 @@
   "migrations": [{ "tag": "v1", "new_sqlite_classes": ["VisitCounter"] }],
 
   "vars": {
-    "ALLOWED_ORIGINS": "https://smangrati.com,http://localhost:4321"
+    "ALLOWED_ORIGINS": "https://smangrati.com,https://www.smangrati.com,http://localhost:4321"
   },
 
   "observability": { "enabled": true }

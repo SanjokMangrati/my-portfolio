@@ -12,7 +12,9 @@ pnpm-debug.log*
 .env
 .env.production
 
+
 .DS_Store
 .vscode/*
 !.vscode/extensions.json
 .idea/
+.editorconfig
