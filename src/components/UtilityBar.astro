@@ -1,0 +1,100 @@
+---
+import { SITE } from '~/data/site'
+
+const SWITCHES = [
+  { channel: 'sfx', label: 'SFX', glyph: '♦', initial: 'ON' },
+  { channel: 'midi', label: 'MIDI', glyph: '♪', initial: 'OFF' },
+] as const
+---
+
+<div class="utility-bar">
+  <span class="utility-bar__title">{SITE.domain}</span>
+
+  <div class="utility-bar__tools">
+    {
+      SWITCHES.map((item) => (
+        <button
+          class="switch bevel-raised"
+          type="button"
+          data-silent
+          data-sound-toggle={item.channel}
+          data-state={item.initial.toLowerCase()}
+          aria-pressed={item.initial === 'ON'}
+        >
+          <span aria-hidden="true">{item.glyph}</span>
+          {item.label}:
+          <span class="switch__state" data-sound-state>
+            {item.initial}
+          </span>
+        </button>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .utility-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 2px 8px;
+    background: linear-gradient(90deg, var(--color-caption-from), var(--color-caption-to));
+    border-bottom: 2px solid var(--color-accent-deep);
+    color: var(--color-accent-pale);
+    font-family: var(--font-mono);
+    font-size: var(--text-meta);
+    letter-spacing: 0.06em;
+  }
+
+  .utility-bar__title {
+    text-shadow: 1px 1px 0 rgb(0 0 0 / 0.35);
+  }
+
+  .utility-bar__tools {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex: none;
+  }
+
+  .switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 1px 6px;
+    background: var(--color-chrome);
+    color: var(--color-ink-3);
+    font-family: var(--font-mono);
+    font-size: var(--text-fine);
+    letter-spacing: 0.04em;
+  }
+
+  .switch[data-state='on'] {
+    border-color: var(--bevel-shadow) var(--bevel-light) var(--bevel-light) var(--bevel-shadow);
+    box-shadow:
+      inset 1px 1px 0 var(--bevel-dark),
+      inset -1px -1px 0 var(--bevel-highlight);
+  }
+
+  .switch__state {
+    font-weight: 700;
+    color: var(--color-accent);
+  }
+
+  .switch[data-state='off'] .switch__state {
+    color: var(--color-ink-6);
+  }
+
+  @media (max-width: 640px) {
+    .utility-bar__title {
+      display: none;
+    }
+  }
+
+  @media (pointer: coarse) {
+    .switch {
+      padding: 5px 8px;
+    }
+  }
+</style>

@@ -1,0 +1,93 @@
+---
+interface Props {
+  title?: string
+  variant?: 'default' | 'primary'
+  padding?: 'none' | 'xs' | 'sm' | 'md'
+  as?: 'h2' | 'h3'
+}
+
+const { title, variant = 'default', padding = 'none', as: Caption = 'h2' }: Props = Astro.props
+---
+
+<div class:list={['panel', 'bevel-raised', `panel--${variant}`]}>
+  {
+    title && (
+      <div class="panel__caption">
+        <Caption class="panel__title">{title}</Caption>
+        <span class="panel__buttons" aria-hidden="true">
+          <span class="panel__button">_</span>
+          <span class="panel__button">□</span>
+          <span class="panel__button">✕</span>
+        </span>
+      </div>
+    )
+  }
+  <div class:list={['panel__body', `panel__body--${padding}`]}>
+    <slot />
+  </div>
+</div>
+
+<style>
+  .panel {
+    background: var(--color-surface);
+  }
+
+  .panel__caption {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 3px 3px 3px 6px;
+    background: linear-gradient(
+      90deg,
+      var(--color-caption-idle-from),
+      var(--color-caption-idle-to)
+    );
+  }
+
+  .panel--primary .panel__caption {
+    background: linear-gradient(90deg, var(--color-caption-from), var(--color-caption-to));
+  }
+
+  .panel__title {
+    font-family: var(--font-mono);
+    font-size: var(--text-meta);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-white);
+    text-shadow: 1px 1px 0 rgb(0 0 0 / 0.35);
+  }
+
+  .panel__buttons {
+    display: flex;
+    gap: 2px;
+    flex: none;
+  }
+
+  .panel__button {
+    display: grid;
+    place-items: center;
+    width: 15px;
+    height: 14px;
+    background: var(--color-chrome);
+    border: 1px solid;
+    border-color: var(--bevel-light) var(--bevel-dark) var(--bevel-dark) var(--bevel-light);
+    font-family: var(--font-sans);
+    font-size: 9px;
+    line-height: 1;
+    color: var(--color-ink);
+  }
+
+  .panel__body--xs {
+    padding: 8px;
+  }
+
+  .panel__body--sm {
+    padding: 14px 18px;
+  }
+
+  .panel__body--md {
+    padding: 16px 18px;
+  }
+</style>

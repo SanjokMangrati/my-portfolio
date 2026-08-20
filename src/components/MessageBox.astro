@@ -1,0 +1,119 @@
+---
+interface Props {
+  id: string
+  title: string
+}
+
+const { id, title } = Astro.props
+---
+
+<dialog class="msgbox bevel-raised" id={id}>
+  <div class="msgbox__caption">
+    <h2 class="msgbox__title" data-msgbox-title>{title}</h2>
+    <form method="dialog">
+      <button class="msgbox__close bevel-raised" value="close" aria-label="Close">✕</button>
+    </form>
+  </div>
+
+  <div class="msgbox__body">
+    <span class="msgbox__icon" aria-hidden="true">i</span>
+    <p class="msgbox__text" data-msgbox-text><slot /></p>
+  </div>
+
+  <form class="msgbox__actions" method="dialog">
+    <button class="msgbox__ok bevel-raised" value="ok">OK</button>
+  </form>
+</dialog>
+
+<style>
+  .msgbox {
+    width: min(380px, calc(100% - 2rem));
+    padding: 0;
+    background: var(--color-chrome);
+    color: var(--color-ink);
+  }
+
+  .msgbox::backdrop {
+    background: rgb(26 26 46 / 0.35);
+  }
+
+  .msgbox__caption {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 3px 3px 3px 6px;
+    background: linear-gradient(90deg, var(--color-caption-from), var(--color-caption-to));
+  }
+
+  .msgbox__title {
+    font-family: var(--font-mono);
+    font-size: var(--text-meta);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-white);
+    text-shadow: 1px 1px 0 rgb(0 0 0 / 0.35);
+  }
+
+  .msgbox__close {
+    width: 17px;
+    height: 16px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    background: var(--color-chrome);
+    font-size: 9px;
+    line-height: 1;
+  }
+
+  .msgbox__body {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 18px 16px 14px;
+  }
+
+  .msgbox__icon {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: var(--color-white);
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  .msgbox__text {
+    font-size: var(--text-body);
+    line-height: 1.6;
+  }
+
+  .msgbox__actions {
+    display: flex;
+    justify-content: center;
+    padding: 0 16px 16px;
+  }
+
+  .msgbox__ok {
+    min-width: 84px;
+    padding: 4px 16px;
+    background: var(--color-chrome);
+    font-family: var(--font-sans);
+    font-size: var(--text-label);
+  }
+
+  .msgbox__close:active,
+  .msgbox__ok:active {
+    border-color: var(--bevel-shadow) var(--bevel-light) var(--bevel-light) var(--bevel-shadow);
+    box-shadow:
+      inset 1px 1px 0 var(--bevel-dark),
+      inset -1px -1px 0 var(--bevel-highlight);
+    padding-top: 5px;
+    padding-bottom: 3px;
+  }
+</style>

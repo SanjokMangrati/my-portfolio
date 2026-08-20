@@ -1,0 +1,150 @@
+<div
+  class="swarm"
+  hidden
+  data-swarm
+  role="dialog"
+  aria-modal="true"
+  aria-label="Antivirus 2000"
+>
+  <div class="swarm__stack" data-swarm-stack></div>
+</div>
+
+<template data-swarm-box>
+  <div class="alert bevel-raised">
+    <div class="alert__caption">
+      <span class="alert__title" data-alert-title></span>
+      <button class="alert__close bevel-raised" type="button" data-swarm-close aria-label="Close">
+        ✕
+      </button>
+    </div>
+
+    <div class="alert__body">
+      <span class="alert__icon" aria-hidden="true">!</span>
+      <p class="alert__text" data-alert-text></p>
+    </div>
+
+    <img class="alert__picture bevel-sunken" data-alert-image hidden alt="" width="450" height="450" />
+
+    <div class="alert__actions">
+      <button class="alert__ok bevel-raised" type="button" data-swarm-close data-alert-button>
+        OK
+      </button>
+    </div>
+  </div>
+</template>
+
+<style>
+  .swarm {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: rgb(26 26 46 / 0.35);
+  }
+
+  .swarm[hidden] {
+    display: none;
+  }
+
+  .swarm__stack {
+    position: absolute;
+    inset: 0;
+  }
+
+  .alert {
+    position: absolute;
+    width: min(calc(100% - 1rem), clamp(300px, 26vw + 120px, 460px));
+    background: var(--color-chrome);
+    color: var(--color-ink);
+  }
+
+  .alert__caption {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 3px 3px 3px 6px;
+    background: linear-gradient(90deg, var(--color-caption-from), var(--color-caption-to));
+  }
+
+  .alert__title {
+    font-family: var(--font-mono);
+    font-size: var(--text-meta);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-white);
+    text-shadow: 1px 1px 0 rgb(0 0 0 / 0.35);
+  }
+
+  .alert__close {
+    flex: none;
+    width: 19px;
+    height: 18px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    background: var(--color-chrome);
+    font-size: 10px;
+    line-height: 1;
+  }
+
+  .alert__body {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 15px 14px 12px;
+  }
+
+  .alert__icon {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--color-hot);
+    color: var(--color-white);
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+
+  .alert__text {
+    font-size: var(--text-body);
+    line-height: 1.55;
+    overflow-wrap: anywhere;
+  }
+
+  .alert__picture {
+    display: block;
+    width: min(calc(100% - 28px), 240px);
+    height: auto;
+    margin: 0 auto 12px;
+  }
+
+  .alert__picture[hidden] {
+    display: none;
+  }
+
+  .alert__actions {
+    display: flex;
+    justify-content: center;
+    padding: 0 14px 14px;
+  }
+
+  .alert__ok {
+    min-width: 82px;
+    padding: 4px 16px;
+    background: var(--color-chrome);
+    font-family: var(--font-sans);
+    font-size: var(--text-label);
+  }
+
+  .alert__close:active,
+  .alert__ok:active {
+    border-color: var(--bevel-shadow) var(--bevel-light) var(--bevel-light) var(--bevel-shadow);
+    box-shadow:
+      inset 1px 1px 0 var(--bevel-dark),
+      inset -1px -1px 0 var(--bevel-highlight);
+  }
+</style>

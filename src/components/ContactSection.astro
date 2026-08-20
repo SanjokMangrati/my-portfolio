@@ -1,0 +1,178 @@
+---
+import MessageBox from '~/components/MessageBox.astro'
+import Section from '~/components/Section.astro'
+import { SITE } from '~/data/site'
+
+const ACCESS_KEY = import.meta.env.PUBLIC_WEB3FORMS_KEY ?? ''
+---
+
+<Section id="contact" title="Contact">
+  <p class="contact__intro">
+    Open to full-time roles, and interesting side projects.
+    If you have a problem worth solving, reach out.
+  </p>
+
+  <form class="contact__form" method="POST" action="https://api.web3forms.com/submit" data-contact-form>
+    <input type="hidden" name="access_key" value={ACCESS_KEY} />
+    <input type="hidden" name="subject" value={`New message from ${SITE.domain}`} />
+    <input type="hidden" name="from_name" value={SITE.domain} />
+
+    <input
+      class="contact__botcheck"
+      type="checkbox"
+      name="botcheck"
+      tabindex="-1"
+      autocomplete="off"
+      aria-hidden="true"
+    />
+
+    <div class="field">
+      <label for="name">Your name:</label>
+      <input
+        class="bevel-sunken"
+        id="name"
+        name="name"
+        type="text"
+        placeholder="Jane Smith"
+        autocomplete="name"
+        required
+      />
+    </div>
+
+    <div class="field">
+      <label for="email">Email address:</label>
+      <input
+        class="bevel-sunken"
+        id="email"
+        name="email"
+        type="email"
+        placeholder="jane@example.com"
+        autocomplete="email"
+        required
+      />
+    </div>
+
+    <div class="field">
+      <label for="message">Message:</label>
+      <textarea
+        class="bevel-sunken"
+        id="message"
+        name="message"
+        rows="5"
+        placeholder="I am reaching out for..."
+        required></textarea>
+    </div>
+
+    <button class="contact__send bevel-raised" type="submit">Send Message &raquo;</button>
+  </form>
+</Section>
+
+<MessageBox id="contact-notice" title="Cannot send message">
+  This form is not connected to a mail server yet. Reach out through one of the links in the sidebar
+  in the meantime.
+</MessageBox>
+
+<style>
+  .contact__intro {
+    margin-bottom: 16px;
+    font-size: var(--text-lede);
+    line-height: 1.7;
+    color: var(--color-ink-4);
+  }
+
+  .contact__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .contact__botcheck {
+    position: absolute;
+    left: -9999px;
+    opacity: 0;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    width: 100%;
+  }
+
+  .field label {
+    font-family: var(--font-mono);
+    font-size: var(--text-label);
+    font-weight: 700;
+    color: var(--color-ink-3);
+  }
+
+  .field input,
+  .field textarea {
+    width: 100%;
+    padding: 5px 8px;
+    font-family: var(--font-sans);
+    font-size: var(--text-lede);
+    color: var(--color-ink);
+    background: var(--color-field);
+    border-radius: 0;
+  }
+
+  .field input {
+    max-width: 360px;
+  }
+
+  .field textarea {
+    max-width: 480px;
+    resize: vertical;
+  }
+
+  .field input:focus,
+  .field textarea:focus {
+    outline: none;
+    background: var(--color-white);
+  }
+
+  @media (max-width: 640px) {
+    .field input,
+    .field textarea {
+      font-size: 16px;
+    }
+  }
+
+  .contact__send {
+    padding: 5px 20px;
+    font-family: var(--font-mono);
+    font-size: var(--text-body);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--color-ink);
+    background: var(--color-chrome);
+    border-radius: 0;
+  }
+
+  .contact__send:hover {
+    color: var(--color-hot);
+  }
+
+  .contact__send:disabled {
+    color: var(--color-ink-4);
+    cursor: default;
+    border-color: var(--bevel-shadow) var(--bevel-light) var(--bevel-light) var(--bevel-shadow);
+    box-shadow:
+      inset 1px 1px 0 var(--bevel-dark),
+      inset -1px -1px 0 var(--bevel-highlight);
+  }
+
+  .contact__send:disabled:hover {
+    color: var(--color-ink-4);
+  }
+
+  .contact__send:active {
+    border-color: var(--bevel-shadow) var(--bevel-light) var(--bevel-light) var(--bevel-shadow);
+    box-shadow:
+      inset 1px 1px 0 var(--bevel-dark),
+      inset -1px -1px 0 var(--bevel-highlight);
+    padding: 6px 19px 4px 21px;
+  }
+</style>

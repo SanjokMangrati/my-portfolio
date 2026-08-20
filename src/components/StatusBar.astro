@@ -1,0 +1,91 @@
+---
+import { SITE } from '~/data/site'
+
+const now = new Date()
+const isoDate = now.toISOString().slice(0, 10)
+const readableDate = now.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+})
+---
+
+<div class="status-bar" aria-hidden="true">
+  <span class="status-bar__cell status-bar__cell--grow bevel-sunken">
+    <span class="status-bar__message" data-status-message></span>
+    <time class="status-bar__date" datetime={isoDate} data-local-date>{readableDate}</time>
+  </span>
+  <span class="status-bar__cell bevel-sunken">
+    <span class="status-bar__globe">◍</span>
+    Internet
+  </span>
+  <span class="status-bar__cell bevel-sunken">{SITE.version}</span>
+  <span class="status-bar__grip"></span>
+</div>
+
+<style>
+  .status-bar {
+    position: fixed;
+    inset: auto 0 0 0;
+    z-index: 10;
+    display: flex;
+    align-items: stretch;
+    gap: 2px;
+    min-height: var(--status-bar-height);
+    padding: 2px 2px calc(2px + env(safe-area-inset-bottom, 0px));
+    background: var(--color-chrome);
+    border-top: 2px solid var(--bevel-light);
+    box-shadow: 0 -1px 0 var(--bevel-shadow);
+    font-family: var(--font-mono);
+    font-size: var(--text-fine);
+    color: var(--color-ink-3);
+  }
+
+  .status-bar__cell {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0 8px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .status-bar__cell--grow {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .status-bar__message,
+  .status-bar__date {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .status-bar__message:not(:empty) ~ .status-bar__date {
+    display: none;
+  }
+
+  .status-bar__globe {
+    color: var(--color-accent);
+  }
+
+  .status-bar__grip {
+    flex: none;
+    width: 16px;
+    background-image: repeating-linear-gradient(
+      135deg,
+      var(--bevel-light) 0 1px,
+      transparent 1px 3px,
+      var(--bevel-shadow) 3px 4px,
+      transparent 4px 6px
+    );
+  }
+
+  @media (max-width: 640px) {
+    .status-bar__cell:not(.status-bar__cell--grow) {
+      display: none;
+    }
+  }
+</style>

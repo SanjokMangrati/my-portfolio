@@ -1,0 +1,73 @@
+---
+import AboutSection from '~/components/AboutSection.astro'
+import AdPanel from '~/components/AdPanel.astro'
+import ContactSection from '~/components/ContactSection.astro'
+import LinksPanel from '~/components/LinksPanel.astro'
+import NavTabs from '~/components/NavTabs.astro'
+import ProjectsSection from '~/components/ProjectsSection.astro'
+import QuickInfoPanel from '~/components/QuickInfoPanel.astro'
+import SiteFooter from '~/components/SiteFooter.astro'
+import SiteHeader from '~/components/SiteHeader.astro'
+import StatusBar from '~/components/StatusBar.astro'
+import TechStackSection from '~/components/TechStackSection.astro'
+import Ticker from '~/components/Ticker.astro'
+import UtilityBar from '~/components/UtilityBar.astro'
+import VisitorCounter from '~/components/VisitorCounter.astro'
+import WorkHistoryPanel from '~/components/WorkHistoryPanel.astro'
+import BaseLayout from '~/layouts/BaseLayout.astro'
+---
+
+<BaseLayout>
+  <UtilityBar />
+  <SiteHeader />
+  <NavTabs />
+  <Ticker />
+
+  <main class="layout">
+    <div class="layout__column">
+      <AboutSection />
+      <TechStackSection />
+      <ProjectsSection />
+      <ContactSection />
+    </div>
+
+    <aside class="layout__sidebar" aria-label="Profile summary">
+      <QuickInfoPanel />
+      <WorkHistoryPanel />
+      <VisitorCounter />
+      <LinksPanel />
+      <AdPanel />
+    </aside>
+  </main>
+
+  <SiteFooter />
+  <StatusBar />
+</BaseLayout>
+
+<style>
+  .layout {
+    display: grid;
+    gap: 2rem;
+    max-width: var(--measure);
+    margin-inline: auto;
+    padding: 2rem var(--rail);
+  }
+
+  .layout__column {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .layout__sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 900px) {
+    .layout {
+      grid-template-columns: minmax(0, 1fr) 280px;
+    }
+  }
+</style>

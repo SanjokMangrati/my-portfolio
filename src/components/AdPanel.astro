@@ -1,0 +1,239 @@
+---
+import Panel from '~/components/Panel.astro'
+import ScanSwarm from '~/components/ScanSwarm.astro'
+import { ADS } from '~/data/site'
+---
+
+<Panel title="Sponsors" padding="xs">
+  <p class="ads__disclaimer">— advertisement —</p>
+
+  <ul class="ads">
+    {
+      ADS.map((ad) => {
+        const classes = ['ad', `ad--${ad.size}`, `ad--${ad.style}`]
+
+        return (
+          <li>
+            {ad.action ? (
+              <button class:list={classes} type="button" data-silent data-ad-action={ad.action}>
+                <span class="ad__headline">{ad.headline}</span>
+                <span class="ad__sub">{ad.sub}</span>
+                <span class="ad__cta">{ad.cta}</span>
+              </button>
+            ) : (
+              <div class:list={classes}>
+                <span class="ad__headline">{ad.headline}</span>
+                <span class="ad__sub">{ad.sub}</span>
+                <span class="ad__cta">{ad.cta}</span>
+              </div>
+            )}
+          </li>
+        )
+      })
+    }
+  </ul>
+</Panel>
+
+<ScanSwarm />
+
+<style>
+  .ads__disclaimer {
+    margin-bottom: 6px;
+    font-family: var(--font-mono);
+    font-size: var(--text-hair);
+    text-align: center;
+    color: var(--color-ink-7);
+  }
+
+  .ads {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+    list-style: none;
+  }
+
+  .ads > li {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .ad {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    max-width: 100%;
+    padding: 4px;
+    overflow: hidden;
+    border: 2px solid;
+    font-family: var(--font-sans);
+    line-height: 1.15;
+    text-align: center;
+  }
+
+  .ad--banner {
+    width: 234px;
+    min-height: 60px;
+  }
+
+  .ad--square {
+    width: 125px;
+    min-height: 125px;
+  }
+
+  .ad__headline {
+    font-size: var(--text-cap);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  .ad__sub {
+    font-size: var(--text-hair);
+  }
+
+  .ad__cta {
+    margin-top: 2px;
+    padding: 1px 8px;
+    border: 1px solid currentcolor;
+    font-family: var(--font-mono);
+    font-size: var(--text-hair);
+    font-weight: 700;
+  }
+
+  .ad--square .ad__headline {
+    font-size: var(--text-label);
+  }
+
+  .ad--blink {
+    background: #ffee00;
+    border-color: #cc0000;
+    color: #cc0000;
+    animation: ad-blink 0.8s steps(1, end) infinite;
+  }
+
+  @keyframes ad-blink {
+    50% {
+      background: #cc0000;
+      border-color: #ffee00;
+      color: #ffee00;
+    }
+  }
+
+  .ad--rainbow {
+    border-color: #ffffff;
+    color: #ffffff;
+    text-shadow: 1px 1px 0 rgb(0 0 0 / 0.6);
+    background-image:
+      linear-gradient(
+        180deg,
+        rgb(255 255 255 / 0.5),
+        rgb(255 255 255 / 0) 42%,
+        rgb(0 0 0 / 0.12) 58%,
+        rgb(0 0 0 / 0.4)
+      ),
+      repeating-linear-gradient(90deg, rgb(0 0 0 / 0.14) 0 1px, transparent 1px 4px),
+      linear-gradient(90deg, #ff0000, #ff9900, #33cc00, #0099ff, #cc00ff, #ff0000);
+    background-size:
+      auto,
+      auto,
+      300% 100%;
+    animation: ad-rainbow 3s linear infinite;
+  }
+
+  @keyframes ad-rainbow {
+    to {
+      background-position:
+        0 0,
+        0 0,
+        -300% 0;
+    }
+  }
+
+  .ad--cash {
+    border-color: #ffee88;
+    color: #ffffff;
+    text-shadow: 1px 1px 0 rgb(0 0 0 / 0.55);
+    background-color: #109438;
+    background-image:
+      radial-gradient(58% 58% at 50% 42%, rgb(255 238 136 / 0.42), transparent 72%),
+      repeating-conic-gradient(
+        from 0deg at 50% 42%,
+        rgb(255 238 136 / 0.22) 0deg 8deg,
+        transparent 8deg 16deg
+      );
+  }
+
+  .ad--cash .ad__headline {
+    color: #ffee88;
+  }
+
+  .ad--cash .ad__cta {
+    background: #ffffff;
+    border-color: #a81400;
+    color: #c01400;
+    animation: ad-pulse 0.6s ease-in-out infinite alternate;
+  }
+
+  @keyframes ad-pulse {
+    to {
+      transform: scale(1.16);
+      background: #c01400;
+      color: #ffffff;
+    }
+  }
+
+  .ad--scroll {
+    justify-content: space-between;
+    padding-block: 7px;
+    border-color: #ffcc00;
+    color: #ffcc00;
+    background-color: #101018;
+    background-image:
+      repeating-linear-gradient(45deg, #ffcc00 0 7px, #101018 7px 14px),
+      repeating-linear-gradient(45deg, #ffcc00 0 7px, #101018 7px 14px),
+      radial-gradient(110% 130% at 50% 50%, #5c1111, #101018 72%);
+    background-size:
+      100% 4px,
+      100% 4px,
+      auto;
+    background-position:
+      top left,
+      bottom left,
+      center;
+    background-repeat: repeat-x, repeat-x, no-repeat;
+  }
+
+  .ad--scroll .ad__sub {
+    align-self: stretch;
+    white-space: nowrap;
+    animation: ad-scroll 7s linear infinite;
+  }
+
+  @keyframes ad-scroll {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  button.ad:active {
+    transform: translateY(1px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ad--rainbow {
+      background-size:
+        auto,
+        auto,
+        100% 100%;
+    }
+
+    .ad--scroll .ad__sub {
+      white-space: normal;
+    }
+  }
+</style>

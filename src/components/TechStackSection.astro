@@ -1,0 +1,144 @@
+---
+import Section from '~/components/Section.astro'
+import { SKILL_GROUPS, type SkillGroup } from '~/data/site'
+
+interface Props {
+  groups?: SkillGroup[]
+  id?: string
+  title?: string
+}
+
+const { groups = SKILL_GROUPS, id = 'skills', title = 'Tech Stack' }: Props = Astro.props
+---
+
+<Section id={id} title={title} padding="sm">
+  {
+    groups.map((group) => (
+      <table class="stack">
+        <tbody>
+          <tr>
+            <th scope="row">
+              <span class="stack__label bevel-raised">
+                <span class="stack__marker" aria-hidden="true" />
+                {group.category}
+              </span>
+            </th>
+            <td>
+              <ul class="stack__items bevel-sunken">
+                {group.items.map((item) => (
+                  <li class="stack__item bevel-raised">
+                    <span class="stack__dot" aria-hidden="true" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    ))
+  }
+</Section>
+
+<style>
+  .stack {
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  .stack + .stack {
+    margin-top: 10px;
+  }
+
+  .stack th,
+  .stack td {
+    padding: 0;
+    vertical-align: top;
+  }
+
+  .stack th {
+    width: 10.5rem;
+    padding-right: 12px;
+  }
+
+  .stack__label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 9px;
+    background: var(--color-chrome);
+    font-family: var(--font-mono);
+    font-size: var(--text-cap);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-accent-deep);
+  }
+
+  .stack__marker {
+    width: 7px;
+    height: 7px;
+    flex: none;
+    background: var(--color-accent);
+    border: 1px solid;
+    border-color: var(--bevel-light) var(--bevel-dark) var(--bevel-dark) var(--bevel-light);
+  }
+
+  .stack__items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    padding: 6px;
+    background: var(--color-field);
+    list-style: none;
+  }
+
+  .stack__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 9px 3px 7px;
+    background: var(--color-chrome);
+    font-family: var(--font-mono);
+    font-size: var(--text-body);
+    color: var(--color-ink-2);
+  }
+
+  .stack__dot {
+    width: 4px;
+    height: 4px;
+    flex: none;
+    background: var(--color-accent-dim);
+  }
+
+  .stack__item:hover {
+    border-color: var(--bevel-shadow) var(--bevel-light) var(--bevel-light) var(--bevel-shadow);
+    box-shadow:
+      inset 1px 1px 0 var(--bevel-dark),
+      inset -1px -1px 0 var(--bevel-highlight);
+    padding: 4px 8px 2px 8px;
+    color: var(--color-accent-deep);
+  }
+
+  .stack__item:hover .stack__dot {
+    background: var(--color-hot);
+  }
+
+  @media (max-width: 560px) {
+    .stack tbody,
+    .stack tr,
+    .stack th,
+    .stack td {
+      display: block;
+    }
+
+    .stack th {
+      width: auto;
+      padding: 0 0 6px;
+    }
+
+    .stack__label {
+      display: inline-flex;
+    }
+  }
+</style>

@@ -1,0 +1,50 @@
+---
+import Panel from '~/components/Panel.astro'
+import { WORK_HISTORY } from '~/data/site'
+---
+
+<Panel title="Work History">
+  <ol class="history">
+    {
+      WORK_HISTORY.map((position) => (
+        <li class="history__item">
+          <p class="history__role">{position.role}</p>
+          <p class="history__company">{position.company}</p>
+          <p class="history__period">{position.period}</p>
+        </li>
+      ))
+    }
+  </ol>
+</Panel>
+
+<style>
+  .history {
+    padding: 12px;
+    list-style: none;
+  }
+
+  .history__item + .history__item {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--color-rule);
+  }
+
+  .history__role {
+    font-size: var(--text-sub);
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+
+  .history__company {
+    margin-top: 1px;
+    font-size: var(--text-cap);
+    color: var(--color-ink-5);
+  }
+
+  .history__period {
+    margin-top: 2px;
+    font-family: var(--font-mono);
+    font-size: var(--text-fine);
+    color: var(--color-ink-7);
+  }
+</style>

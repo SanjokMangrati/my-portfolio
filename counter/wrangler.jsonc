@@ -1,0 +1,18 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "portfolio-visits",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-09-01",
+
+  "durable_objects": {
+    "bindings": [{ "name": "VISITS", "class_name": "VisitCounter" }]
+  },
+
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["VisitCounter"] }],
+
+  "vars": {
+    "ALLOWED_ORIGINS": "https://smangrati.com,http://localhost:4321"
+  },
+
+  "observability": { "enabled": true }
+}

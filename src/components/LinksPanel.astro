@@ -1,0 +1,55 @@
+---
+import Panel from '~/components/Panel.astro'
+import { LINKS } from '~/data/site'
+import { isExternal } from '~/lib/url'
+---
+
+<Panel title="Links">
+  <ul class="links">
+    {
+      LINKS.map((link) => (
+        <li>
+          <span class="links__marker" aria-hidden="true">&rsaquo;</span><a
+            href={link.href}
+            target={isExternal(link.href) ? '_blank' : undefined}
+            rel={isExternal(link.href) ? 'noopener noreferrer' : undefined}
+            >{link.label}</a>
+        </li>
+      ))
+    }
+  </ul>
+</Panel>
+
+<style>
+  .links {
+    padding: 8px 0;
+    list-style: none;
+  }
+
+  .links li {
+    padding: 5px 10px;
+    border-bottom: 1px dotted var(--color-rule);
+  }
+
+  .links li:last-child {
+    border-bottom: none;
+  }
+
+  .links__marker {
+    margin-right: 6px;
+    font-family: var(--font-mono);
+    font-size: var(--text-meta);
+    color: var(--color-accent);
+  }
+
+  .links a {
+    font-size: var(--text-label);
+    font-weight: 600;
+  }
+
+  @media (pointer: coarse) {
+    .links li {
+      padding: 10px;
+    }
+  }
+</style>

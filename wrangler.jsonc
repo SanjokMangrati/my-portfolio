@@ -1,0 +1,15 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "smangrati-portfolio",
+  "compatibility_date": "2025-09-01",
+  "assets": {
+    "directory": "./dist",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "none"
+  },
+  "routes": [
+    { "pattern": "smangrati.com", "custom_domain": true },
+    { "pattern": "www.smangrati.com", "custom_domain": true }
+  ],
+  "observability": { "enabled": true }
+}

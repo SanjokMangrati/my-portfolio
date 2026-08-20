@@ -1,0 +1,32 @@
+---
+import { TICKER_TEXT } from '~/data/site'
+---
+
+<div class="ticker">
+  <p class="ticker__track">{TICKER_TEXT}</p>
+</div>
+
+<style>
+  .ticker {
+    padding-block: 0.375rem;
+    background: var(--color-note);
+    border-bottom: 1px solid var(--color-note-rule);
+    overflow: hidden;
+  }
+
+  .ticker__track {
+    display: inline-block;
+    white-space: nowrap;
+    font-family: var(--font-mono);
+    font-size: var(--text-cap);
+    color: var(--color-note-ink);
+    animation: ticker 40s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ticker__track {
+      animation: none;
+      padding-inline: 1.5rem;
+    }
+  }
+</style>

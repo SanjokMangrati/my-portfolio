@@ -1,0 +1,42 @@
+---
+import { SITE } from '~/data/site'
+---
+
+<footer class="footer">
+  <div class="footer__inner">
+    <p>&copy; {SITE.copyrightYear} {SITE.domain} &mdash; All rights reserved</p>
+    <p class="footer__note">Best viewed at 1280&times;800 or higher</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    margin-top: 40px;
+    padding: 1rem var(--rail);
+    background: var(--color-chrome);
+    border-top: 3px solid var(--color-accent);
+    box-shadow: inset 0 1px 0 var(--bevel-light);
+    font-family: var(--font-mono);
+    font-size: var(--text-meta);
+    color: var(--color-ink-5);
+  }
+
+  .footer__inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.5rem;
+    max-width: var(--measure);
+    margin-inline: auto;
+  }
+
+  .footer__note {
+    color: var(--color-ink-7);
+  }
+
+  @media (min-width: 768px) {
+    .footer__inner {
+      flex-direction: row;
+    }
+  }
+</style>

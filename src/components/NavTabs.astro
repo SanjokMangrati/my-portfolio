@@ -1,0 +1,84 @@
+---
+import { NAV } from '~/data/site'
+
+interface Props {
+  base?: string
+  active?: number
+}
+
+const { base = '', active = 0 }: Props = Astro.props
+---
+
+<nav class="tabs" aria-label="Sections">
+  <div class="tabs__inner">
+    {
+      NAV.map((item, index) => (
+        <a
+          class:list={['tabs__link', { 'is-active': index === active }]}
+          href={`${base}${item.href}`}
+          data-tab
+        >
+          {item.label}
+        </a>
+      ))
+    }
+  </div>
+</nav>
+
+<style>
+  .tabs {
+    padding: 6px var(--rail) 0;
+    background: var(--color-chrome);
+    border-bottom: 2px solid var(--color-accent);
+  }
+
+  .tabs__inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    max-width: var(--measure);
+    margin-inline: auto;
+  }
+
+  .tabs__link {
+    position: relative;
+    top: 2px;
+    display: inline-block;
+    padding: 4px 14px 5px;
+    font-family: var(--font-sans);
+    font-size: var(--text-label);
+    font-weight: 600;
+    color: var(--color-accent);
+    text-decoration: none;
+    background: var(--color-canvas);
+    border: 2px solid;
+    border-color: var(--bevel-light) var(--bevel-dark) transparent var(--bevel-light);
+    box-shadow: inset -1px 0 0 var(--bevel-shadow);
+  }
+
+  .tabs__link:visited {
+    color: var(--color-accent);
+  }
+
+  .tabs__link:hover {
+    background: var(--color-surface);
+    color: var(--color-hot);
+  }
+
+  .tabs__link.is-active {
+    top: 0;
+    padding-bottom: 7px;
+    background: var(--color-surface);
+    color: var(--color-accent-deep);
+  }
+
+  @media (pointer: coarse) {
+    .tabs__link {
+      padding: 9px 16px 10px;
+    }
+
+    .tabs__link.is-active {
+      padding-bottom: 12px;
+    }
+  }
+</style>

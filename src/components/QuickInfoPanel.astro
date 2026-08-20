@@ -1,0 +1,46 @@
+---
+import Panel from '~/components/Panel.astro'
+import { QUICK_INFO } from '~/data/site'
+---
+
+<Panel title="Quick Info" variant="primary">
+  <table class="quick-info">
+    <tbody>
+      {
+        QUICK_INFO.map((row) => (
+          <tr>
+            <th scope="row">{row.key}</th>
+            <td>{row.value}</td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</Panel>
+
+<style>
+  .quick-info {
+    width: 100%;
+  }
+
+  .quick-info tr + tr th,
+  .quick-info tr + tr td {
+    border-top: 1px solid var(--color-chrome);
+  }
+
+  .quick-info th {
+    padding: 6px 10px;
+    font-family: var(--font-mono);
+    font-size: var(--text-meta);
+    font-weight: 700;
+    color: var(--color-accent);
+    vertical-align: top;
+    white-space: nowrap;
+  }
+
+  .quick-info td {
+    padding: 6px 10px 6px 4px;
+    font-size: var(--text-label);
+    color: var(--color-ink-3);
+  }
+</style>

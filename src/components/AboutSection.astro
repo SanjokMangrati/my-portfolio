@@ -1,0 +1,47 @@
+---
+import Section from '~/components/Section.astro'
+import { ABOUT_LINKS, ABOUT_PARAGRAPHS } from '~/data/site'
+import { isExternal } from '~/lib/url'
+---
+
+<Section id="about" title="About Me">
+  <div class="about">
+    {ABOUT_PARAGRAPHS.map((paragraph) => <p>{paragraph}</p>)}
+    <p class="about__links">
+      {
+        ABOUT_LINKS.map((link, index) => (
+          <>
+            {index > 0 && ' | '}
+            <a
+              href={link.href}
+              target={isExternal(link.href) ? '_blank' : undefined}
+              rel={isExternal(link.href) ? 'noopener noreferrer' : undefined}
+            >
+              {link.label}
+            </a>
+          </>
+        ))
+      }
+    </p>
+  </div>
+</Section>
+
+<style>
+  .about {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    font-family: var(--font-sans);
+    font-size: var(--text-prose);
+    line-height: 1.8;
+    color: var(--color-ink-2);
+  }
+
+  .about__links {
+    padding-top: 0.25rem;
+  }
+
+  .about__links a:first-of-type {
+    font-weight: 600;
+  }
+</style>

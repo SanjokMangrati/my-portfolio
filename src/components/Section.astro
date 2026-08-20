@@ -1,0 +1,56 @@
+---
+import Panel from '~/components/Panel.astro'
+
+interface Props {
+  id: string
+  title: string
+  padding?: 'none' | 'xs' | 'sm' | 'md'
+  framed?: boolean
+}
+
+const { id, title, padding = 'md', framed = true } = Astro.props
+const headingId = `${id}-heading`
+---
+
+<section id={id} aria-labelledby={headingId}>
+  <div class="section__heading">
+    <h2 class="section__bar bevel-raised" id={headingId}>{title}</h2>
+    <hr class="section__rule" />
+  </div>
+
+  {
+    framed ? (
+      <Panel padding={padding} as="h3">
+        <slot />
+      </Panel>
+    ) : (
+      <slot />
+    )
+  }
+</section>
+
+<style>
+  .section__heading {
+    margin-bottom: 1.5rem;
+  }
+
+  .section__bar {
+    display: inline-block;
+    padding: 3px 14px;
+    background: linear-gradient(90deg, var(--color-caption-from), var(--color-caption-to));
+    color: var(--color-white);
+    font-family: var(--font-mono);
+    font-size: var(--text-cap);
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 0 rgb(0 0 0 / 0.35);
+  }
+
+  .section__rule {
+    margin: 0;
+    border: none;
+    border-top: 2px solid var(--color-accent);
+    border-bottom: 1px solid var(--bevel-light);
+  }
+</style>
