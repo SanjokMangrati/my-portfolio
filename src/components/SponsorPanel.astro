@@ -5,26 +5,26 @@ import { ADS } from '~/data/site'
 ---
 
 <Panel title="Sponsors" padding="xs">
-  <p class="ads__disclaimer">— advertisement —</p>
+  <p class="promos__note">— advertisement —</p>
 
-  <ul class="ads">
+  <ul class="promos">
     {
       ADS.map((ad) => {
-        const classes = ['ad', `ad--${ad.size}`, `ad--${ad.style}`]
+        const classes = ['promo', `promo--${ad.size}`, `promo--${ad.style}`]
 
         return (
           <li>
             {ad.action ? (
-              <button class:list={classes} type="button" data-silent data-ad-action={ad.action}>
-                <span class="ad__headline">{ad.headline}</span>
-                <span class="ad__sub">{ad.sub}</span>
-                <span class="ad__cta">{ad.cta}</span>
+              <button class:list={classes} type="button" data-silent data-promo-action={ad.action}>
+                <span class="promo__headline">{ad.headline}</span>
+                <span class="promo__sub">{ad.sub}</span>
+                <span class="promo__cta">{ad.cta}</span>
               </button>
             ) : (
               <div class:list={classes}>
-                <span class="ad__headline">{ad.headline}</span>
-                <span class="ad__sub">{ad.sub}</span>
-                <span class="ad__cta">{ad.cta}</span>
+                <span class="promo__headline">{ad.headline}</span>
+                <span class="promo__sub">{ad.sub}</span>
+                <span class="promo__cta">{ad.cta}</span>
               </div>
             )}
           </li>
@@ -37,7 +37,7 @@ import { ADS } from '~/data/site'
 <ScanSwarm />
 
 <style>
-  .ads__disclaimer {
+  .promos__note {
     margin-bottom: 6px;
     font-family: var(--font-mono);
     font-size: var(--text-hair);
@@ -45,7 +45,7 @@ import { ADS } from '~/data/site'
     color: var(--color-ink-7);
   }
 
-  .ads {
+  .promos {
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
@@ -53,12 +53,12 @@ import { ADS } from '~/data/site'
     list-style: none;
   }
 
-  .ads > li {
+  .promos > li {
     min-width: 0;
     max-width: 100%;
   }
 
-  .ad {
+  .promo {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -73,27 +73,27 @@ import { ADS } from '~/data/site'
     text-align: center;
   }
 
-  .ad--banner {
+  .promo--banner {
     width: 234px;
     min-height: 60px;
   }
 
-  .ad--square {
+  .promo--square {
     width: 125px;
     min-height: 125px;
   }
 
-  .ad__headline {
+  .promo__headline {
     font-size: var(--text-cap);
     font-weight: 700;
     letter-spacing: 0.02em;
   }
 
-  .ad__sub {
+  .promo__sub {
     font-size: var(--text-hair);
   }
 
-  .ad__cta {
+  .promo__cta {
     margin-top: 2px;
     padding: 1px 8px;
     border: 1px solid currentcolor;
@@ -102,18 +102,18 @@ import { ADS } from '~/data/site'
     font-weight: 700;
   }
 
-  .ad--square .ad__headline {
+  .promo--square .promo__headline {
     font-size: var(--text-label);
   }
 
-  .ad--blink {
+  .promo--blink {
     background: #ffee00;
     border-color: #cc0000;
     color: #cc0000;
-    animation: ad-blink 0.8s steps(1, end) infinite;
+    animation: promo-blink 0.8s steps(1, end) infinite;
   }
 
-  @keyframes ad-blink {
+  @keyframes promo-blink {
     50% {
       background: #cc0000;
       border-color: #ffee00;
@@ -121,7 +121,7 @@ import { ADS } from '~/data/site'
     }
   }
 
-  .ad--rainbow {
+  .promo--rainbow {
     border-color: #ffffff;
     color: #ffffff;
     text-shadow: 1px 1px 0 rgb(0 0 0 / 0.6);
@@ -139,10 +139,10 @@ import { ADS } from '~/data/site'
       auto,
       auto,
       300% 100%;
-    animation: ad-rainbow 3s linear infinite;
+    animation: promo-rainbow 3s linear infinite;
   }
 
-  @keyframes ad-rainbow {
+  @keyframes promo-rainbow {
     to {
       background-position:
         0 0,
@@ -151,7 +151,7 @@ import { ADS } from '~/data/site'
     }
   }
 
-  .ad--cash {
+  .promo--cash {
     border-color: #ffee88;
     color: #ffffff;
     text-shadow: 1px 1px 0 rgb(0 0 0 / 0.55);
@@ -165,18 +165,18 @@ import { ADS } from '~/data/site'
       );
   }
 
-  .ad--cash .ad__headline {
+  .promo--cash .promo__headline {
     color: #ffee88;
   }
 
-  .ad--cash .ad__cta {
+  .promo--cash .promo__cta {
     background: #ffffff;
     border-color: #a81400;
     color: #c01400;
-    animation: ad-pulse 0.6s ease-in-out infinite alternate;
+    animation: promo-pulse 0.6s ease-in-out infinite alternate;
   }
 
-  @keyframes ad-pulse {
+  @keyframes promo-pulse {
     to {
       transform: scale(1.16);
       background: #c01400;
@@ -184,7 +184,7 @@ import { ADS } from '~/data/site'
     }
   }
 
-  .ad--scroll {
+  .promo--scroll {
     justify-content: space-between;
     padding-block: 7px;
     border-color: #ffcc00;
@@ -205,13 +205,13 @@ import { ADS } from '~/data/site'
     background-repeat: repeat-x, repeat-x, no-repeat;
   }
 
-  .ad--scroll .ad__sub {
+  .promo--scroll .promo__sub {
     align-self: stretch;
     white-space: nowrap;
-    animation: ad-scroll 7s linear infinite;
+    animation: promo-scroll 7s linear infinite;
   }
 
-  @keyframes ad-scroll {
+  @keyframes promo-scroll {
     from {
       transform: translateX(100%);
     }
@@ -220,19 +220,19 @@ import { ADS } from '~/data/site'
     }
   }
 
-  button.ad:active {
+  button.promo:active {
     transform: translateY(1px);
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .ad--rainbow {
+    .promo--rainbow {
       background-size:
         auto,
         auto,
         100% 100%;
     }
 
-    .ad--scroll .ad__sub {
+    .promo--scroll .promo__sub {
       white-space: normal;
     }
   }

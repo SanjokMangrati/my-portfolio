@@ -151,8 +151,8 @@ if (swarm && stack && template && prototype) {
     next()
   }
 
-  for (const banner of document.querySelectorAll<HTMLElement>('[data-ad-action]')) {
-    const pile = PILES[banner.dataset['adAction'] ?? '']
+  for (const banner of document.querySelectorAll<HTMLElement>('[data-promo-action]')) {
+    const pile = PILES[banner.dataset['promoAction'] ?? '']
     if (pile) banner.addEventListener('click', () => open(pile, banner))
   }
 

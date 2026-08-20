@@ -29,6 +29,23 @@ function resume(): void {
   if (context?.state === 'suspended') void context.resume()
 }
 
+let unlocked = false
+
+function unlock(): void {
+  if (unlocked) return
+
+  const ctx = getContext()
+  if (!ctx) return
+
+  unlocked = true
+  resume()
+  if (prefs.midi) startMidi()
+
+  document.removeEventListener('pointerdown', unlock)
+  document.removeEventListener('keydown', unlock)
+  document.removeEventListener('touchstart', unlock)
+}
+
 interface ToneOptions {
   freq: number
   toFreq?: number
@@ -84,7 +101,7 @@ const SFX = {
 }
 
 export function play(name: keyof typeof SFX): void {
-  if (!prefs.sfx) return
+  if (!prefs.sfx || !unlocked) return
   resume()
   SFX[name]()
 }
@@ -154,6 +171,7 @@ export function subscribe(listener: Listener): void {
 }
 
 export function toggle(channel: Channel): void {
+  unlock()
   prefs[channel] = !prefs[channel]
 
   if (channel === 'midi') {
@@ -181,12 +199,6 @@ try {
 } catch {
 }
 
-if (prefs.midi) {
-  const kick = (): void => {
-    startMidi()
-    document.removeEventListener('pointerdown', kick)
-    document.removeEventListener('keydown', kick)
-  }
-  document.addEventListener('pointerdown', kick)
-  document.addEventListener('keydown', kick)
-}
+document.addEventListener('pointerdown', unlock)
+document.addEventListener('keydown', unlock)
+document.addEventListener('touchstart', unlock, { passive: true })
