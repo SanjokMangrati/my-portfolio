@@ -4,7 +4,6 @@ on:
   push:
     branches: [main]
     paths-ignore:
-      - 'counter/**'
       - 'README.md'
       - '.env.example'
       - '.editorconfig'
@@ -43,7 +42,6 @@ jobs:
         run: pnpm run build
         env:
           PUBLIC_WEB3FORMS_KEY: ${{ vars.PUBLIC_WEB3FORMS_KEY }}
-          PUBLIC_VISITS_ENDPOINT: ${{ vars.PUBLIC_VISITS_ENDPOINT }}
 
       - name: Deploy
         uses: cloudflare/wrangler-action@v3

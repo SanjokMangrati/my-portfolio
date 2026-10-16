@@ -1,0 +1,64 @@
+---
+interface Props {
+  label: string
+  title: string
+  id: string
+  count?: number
+  aside?: string
+}
+
+const { label, title, id, count, aside } = Astro.props
+---
+
+<div class="section-head">
+  <span class="label">
+    {label}
+    {count !== undefined && <span class="label__count">({String(count).padStart(2, '0')})</span>}
+  </span>
+  <h2 class="section-head__title" id={id}>{title}</h2>
+  {aside && <p class="section-head__aside">{aside}</p>}
+</div>
+
+<style>
+  .section-head {
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .section-head__title {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(40px, 6vw, 56px);
+    line-height: 0.92;
+    letter-spacing: 0.005em;
+    text-transform: uppercase;
+    text-wrap: balance;
+  }
+
+  .section-head__aside {
+    max-width: 46ch;
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--ink-muted);
+  }
+
+  :global(.estate) .section-head__aside {
+    color: var(--on-estate-muted);
+  }
+
+  @media (min-width: 900px) {
+    .section-head {
+      grid-template-columns: var(--rail) minmax(0, 1fr);
+      column-gap: var(--space-8);
+      align-items: start;
+    }
+
+    .label {
+      padding-top: 10px;
+    }
+
+    .section-head__aside {
+      grid-column: 2;
+    }
+  }
+</style>

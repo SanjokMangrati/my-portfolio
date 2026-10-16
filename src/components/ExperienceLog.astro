@@ -1,0 +1,67 @@
+---
+import { WORK_HISTORY } from '~/data/site'
+---
+
+<ol class="log">
+  {
+    WORK_HISTORY.map((job) => (
+      <li class="log__row">
+        <span class="log__period">
+          {job.start}–{job.end ?? <span class="log__now">now</span>}
+        </span>
+        <p class="log__role">
+          {job.role} <span class="log__org">· {job.company}</span>
+        </p>
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  .log__row {
+    display: grid;
+    grid-template-columns: 148px minmax(0, 1fr);
+    gap: var(--space-1) var(--space-6);
+    padding-block: var(--space-4);
+    border-bottom: var(--border-hair) solid var(--hairline);
+  }
+
+  .log__row:first-child {
+    border-top: var(--border-hair) solid var(--hairline);
+  }
+
+  .log__period {
+    font-family: var(--font-mono);
+    font-stretch: 87.5%;
+    font-size: 13px;
+    line-height: 1.9;
+    letter-spacing: 0.02em;
+    color: var(--ink-muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .log__now {
+    color: var(--muscatel-text);
+  }
+
+  .log__role {
+    font-weight: 700;
+  }
+
+  .log__org {
+    font-weight: 400;
+    color: var(--ink-muted);
+  }
+
+  @media (min-width: 900px) {
+    .log {
+      margin-left: calc(var(--rail) + var(--space-8));
+    }
+  }
+
+  @media (max-width: 560px) {
+    .log__row {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

@@ -1,6 +1,3 @@
-import './local-date'
-import './visits'
-import './ui-sounds'
-import './status-bar'
+import './clock'
+import './theme'
 import './contact-form'
-import './promos'

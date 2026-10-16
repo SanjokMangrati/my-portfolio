@@ -1,42 +1,73 @@
 ---
-import { SITE } from '~/data/site'
+import Icon from '~/components/Icon.astro'
+import Seal from '~/components/Seal.astro'
+import { GITHUB, LINKEDIN, PLACE, SITE } from '~/data/site'
 ---
 
+<hr class="rule" />
 <footer class="footer">
-  <div class="footer__inner">
-    <p>&copy; {SITE.copyrightYear} {SITE.domain} &mdash; All rights reserved</p>
-    <p class="footer__note">Best viewed at 1280&times;800 or higher</p>
+  <Seal class="footer__seal" />
+  <div class="footer__end">
+    <ul class="footer__links">
+      <li>
+        <a class="link" href={GITHUB} target="_blank" rel="noopener noreferrer"><Icon name="repo" small />GitHub</a>
+      </li>
+      <li>
+        <a class="link" href={LINKEDIN} target="_blank" rel="noopener noreferrer"><Icon name="profile" small />LinkedIn</a>
+      </li>
+    </ul>
+    <p class="footer__fine">
+      Built at {PLACE.elevation} · {SITE.domain} · {SITE.version} · © {SITE.copyrightYear}
+    </p>
   </div>
 </footer>
 
 <style>
   .footer {
-    margin-top: 40px;
-    padding: 1rem var(--rail);
-    background: var(--color-chrome);
-    border-top: 3px solid var(--color-accent);
-    box-shadow: inset 0 1px 0 var(--bevel-light);
-    font-family: var(--font-mono);
-    font-size: var(--text-meta);
-    color: var(--color-ink-5);
-  }
-
-  .footer__inner {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-end;
     justify-content: space-between;
-    gap: 0.5rem;
-    max-width: var(--measure);
-    margin-inline: auto;
+    gap: var(--space-6);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
   }
 
-  .footer__note {
-    color: var(--color-ink-7);
+  .footer :global(.footer__seal) {
+    width: 232px;
+    height: auto;
+    color: var(--on-estate);
   }
 
-  @media (min-width: 768px) {
-    .footer__inner {
-      flex-direction: row;
+  .footer__end {
+    display: grid;
+    gap: var(--space-3);
+    justify-items: end;
+  }
+
+  .footer__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-6);
+  }
+
+  .footer__links a {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .footer__fine {
+    font-family: var(--font-mono);
+    font-stretch: 75%;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--on-estate-muted);
+  }
+
+  @media (max-width: 560px) {
+    .footer__end {
+      justify-items: start;
     }
   }
 </style>

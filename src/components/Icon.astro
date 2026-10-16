@@ -1,0 +1,37 @@
+---
+const PATHS = {
+  'arrow-right': '<path d="M3 12h17M14 6l6 6-6 6"/>',
+  'arrow-left': '<path d="M21 12H4M10 6l-6 6 6 6"/>',
+  'arrow-out': '<path d="M6 18L18 6M9 6h9v9"/>',
+  summit: '<path d="M2 20h20M2.5 20L9 8.5l4 6.5 3-4.5 5.5 9.5"/>',
+  clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5.5l3.5 2"/>',
+  repo: '<path d="M6 7v10M18 10c0 4.5-12 2.5-12 7"/><circle cx="6" cy="5" r="2"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="8" r="2"/>',
+  profile:
+    '<path d="M3 4h18v16H3z"/><circle cx="9" cy="10" r="2.5"/><path d="M5.5 17c.6-2 2-3.2 3.5-3.2s2.9 1.2 3.5 3.2M15 9.5h3M15 13.5h3"/>',
+  theme:
+    '<circle cx="12" cy="12" r="8.5"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor" stroke="none"/>',
+} as const
+
+export type IconName = keyof typeof PATHS
+
+interface Props {
+  name: IconName
+  small?: boolean
+  class?: string
+}
+
+const { name, small = false, class: className } = Astro.props
+---
+
+<svg
+  class:list={['icon', { 'icon--sm': small }, className]}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.5"
+  stroke-linecap="square"
+  stroke-linejoin="miter"
+  aria-hidden="true"
+  focusable="false"
+  set:html={PATHS[name]}
+/>

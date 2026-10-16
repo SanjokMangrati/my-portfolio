@@ -1,0 +1,30 @@
+---
+import Terraces from '~/components/Terraces.astro'
+---
+
+<div class="estate">
+  <Terraces class="estate__terraces" lines={5} top={40} gap={64} height={360} />
+  <div class="wrap estate__inner">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .estate {
+    position: relative;
+    overflow: hidden;
+    background: var(--estate);
+    color: var(--on-estate);
+  }
+
+  .estate :global(.estate__terraces) {
+    color: var(--estate-line);
+  }
+
+  .estate__inner {
+    position: relative;
+    display: grid;
+    gap: var(--space-12);
+    padding-block: var(--section-gap) var(--space-8);
+  }
+</style>

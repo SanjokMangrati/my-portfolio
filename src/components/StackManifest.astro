@@ -1,0 +1,98 @@
+---
+import type { SkillGroup } from '~/data/site'
+
+interface Props {
+  groups: SkillGroup[]
+  indent?: boolean
+}
+
+const { groups, indent = true } = Astro.props
+---
+
+<dl class:list={['manifest', { 'manifest--indent': indent }]}>
+  {
+    groups.map((group) => (
+      <div class="manifest__row">
+        <dt>{group.category}</dt>
+        <span class="manifest__leader" aria-hidden="true" />
+        <dd>
+          {group.items.map((item) => (
+            <span>{item}</span>
+          ))}
+        </dd>
+      </div>
+    ))
+  }
+</dl>
+
+<style>
+  .manifest {
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .manifest__row {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-3);
+  }
+
+  dt {
+    flex: none;
+    font-family: var(--font-mono);
+    font-stretch: 75%;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .manifest__leader {
+    flex: 1 1 24px;
+    min-width: 24px;
+    border-bottom: 1.5px dotted var(--rule);
+    transform: translateY(-4px);
+  }
+
+  dd {
+    flex: 0 1 auto;
+    min-width: 0;
+    text-align: right;
+    font-family: var(--font-mono);
+    font-stretch: 87.5%;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  dd span + span::before {
+    content: ' / ';
+    color: var(--ink-muted);
+  }
+
+  @media (min-width: 900px) {
+    .manifest--indent {
+      margin-left: calc(var(--rail) + var(--space-8));
+    }
+  }
+
+  @media (max-width: 560px) {
+    .manifest {
+      gap: 0;
+    }
+
+    .manifest__row {
+      display: grid;
+      gap: var(--space-1);
+      padding-block: var(--space-3);
+      border-bottom: var(--border-hair) solid var(--hairline);
+    }
+
+    .manifest__leader {
+      display: none;
+    }
+
+    dd {
+      text-align: left;
+    }
+  }
+</style>

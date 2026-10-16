@@ -1,0 +1,58 @@
+---
+import Terraces from '~/components/Terraces.astro'
+import { PROFILE } from '~/data/site'
+---
+
+<section class="masthead" aria-labelledby="name">
+  <Terraces class="masthead__terraces" draw />
+  <h1 class="masthead__name" id="name">
+    <span>{PROFILE.firstName}</span>
+    <span>{PROFILE.lastName}</span>
+  </h1>
+  <p class="masthead__role">{PROFILE.role}</p>
+</section>
+
+<style>
+  .masthead {
+    position: relative;
+    padding-block: var(--space-12) var(--space-8);
+    overflow: hidden;
+  }
+
+  .masthead :global(.masthead__terraces) {
+    color: var(--hairline);
+  }
+
+  .masthead__name {
+    position: relative;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(64px, 15.5vw, 200px);
+    line-height: 0.82;
+    letter-spacing: -0.005em;
+    text-transform: uppercase;
+  }
+
+  .masthead__name span {
+    display: block;
+  }
+
+  .masthead__role {
+    position: relative;
+    max-width: 34ch;
+    margin-top: var(--space-6);
+    font-size: 21px;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 560px) {
+    .masthead__name {
+      font-size: min(21vw, 112px);
+      line-height: 0.86;
+    }
+
+    .masthead__role {
+      font-size: 19px;
+    }
+  }
+</style>

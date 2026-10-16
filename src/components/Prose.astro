@@ -1,0 +1,51 @@
+---
+interface Props {
+  label: string
+  paragraphs: string[]
+  /** Set the first paragraph in the larger lede size. */
+  lede?: boolean
+  labelId?: string
+}
+
+const { label, paragraphs, lede = true, labelId } = Astro.props
+---
+
+<div class="prose">
+  <h2 class="label" id={labelId}>{label}</h2>
+  <div class:list={['prose__body', { 'prose__body--lede': lede }]}>
+    {paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+    <slot />
+  </div>
+</div>
+
+<style>
+  .prose {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .prose__body {
+    display: grid;
+    gap: var(--space-4);
+    max-width: var(--measure);
+  }
+
+  .prose__body--lede p:first-child {
+    font-size: 21px;
+    line-height: 1.6;
+  }
+
+  @media (min-width: 900px) {
+    .prose {
+      grid-template-columns: var(--rail) minmax(0, 1fr);
+      column-gap: var(--space-8);
+    }
+
+    .label {
+      align-self: start;
+      position: sticky;
+      top: var(--space-6);
+      padding-top: 8px;
+    }
+  }
+</style>

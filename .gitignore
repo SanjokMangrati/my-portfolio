@@ -1,6 +1,6 @@
 dist/
 .astro/
-counter/.wrangler/
+.wrangler/
 
 node_modules/
 

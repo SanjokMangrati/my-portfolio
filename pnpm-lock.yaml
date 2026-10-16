@@ -8,13 +8,13 @@ importers:
 
   .:
     dependencies:
-      '@fontsource/courier-prime':
-        specifier: ^5.2.5
+      '@fontsource-variable/martian-mono':
+        specifier: ^5.3.0
         version: 5.3.0
-      '@fontsource/libre-baskerville':
-        specifier: ^5.2.5
+      '@fontsource/big-shoulders':
+        specifier: ^5.3.0
         version: 5.3.0
-      '@fontsource/open-sans':
+      '@fontsource/martel':
         specifier: ^5.3.0
         version: 5.3.0
       astro:
@@ -32,19 +32,7 @@ importers:
         version: 5.9.3
       wrangler:
         specifier: ^4.42.0
-        version: 4.123.0(@cloudflare/workers-types@4.20260702.1)
-
-  counter:
-    devDependencies:
-      '@cloudflare/workers-types':
-        specifier: ^4.20250909.0
-        version: 4.20260702.1
-      typescript:
-        specifier: ^5.9.2
-        version: 5.9.3
-      wrangler:
-        specifier: ^4.42.0
-        version: 4.123.0(@cloudflare/workers-types@4.20260702.1)
+        version: 4.123.0
 
 packages:
 
@@ -149,9 +137,6 @@ packages:
     engines: {node: '>=16'}
     cpu: [x64]
     os: [win32]
-
-  '@cloudflare/workers-types@4.20260702.1':
-    resolution: {integrity: sha512-mOhf5TUEB1m2vPrxtqoIGfz0fUC9xyxRDx5gWHy5s+OCo6dcV+g7wI1R7gYCMFohhqF/2y2xeKVwMwCJjfn/WA==}
 
   '@cspotcode/source-map-support@0.8.1':
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
@@ -649,14 +634,14 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@fontsource/courier-prime@5.3.0':
-    resolution: {integrity: sha512-KIi1k4VG1Wv+/CGpb1AUpLkUuOAQA6zmvthqxOZGN0AV8BEgQgbK7qAtquv14zsBJAY1bb5BHIEbWVFLgENh0w==}
+  '@fontsource-variable/martian-mono@5.3.0':
+    resolution: {integrity: sha512-0wVODx9ILwNnaYC4XCuSaFRYtj1Prd89MRVaSuv2ng6zLiQkS4SepaWEPefs7vqCZS8sbEOA8jb/4F5KNMnGdg==}
 
-  '@fontsource/libre-baskerville@5.3.0':
-    resolution: {integrity: sha512-IA6OLq36/JWMX70Fha15sri2qWsijFh7hgdDXCRZHjKUHtWarLQoiGilvm7iMqm7HiYFEv9acF3+IuRHO9kUiA==}
+  '@fontsource/big-shoulders@5.3.0':
+    resolution: {integrity: sha512-a0RlGhWVKJObi0gHxFpb6u6lrDx2w23DrkDZAqruF5D5Wzb3Fn2RWaj42OB7xGgYSNr+BDsezsZitdS5M41lNw==}
 
-  '@fontsource/open-sans@5.3.0':
-    resolution: {integrity: sha512-V1bdMlGNyZrJwzrdusshMOw2YR0aqYDL7kOo9dkxUEKl8dFv66A9HLckOOXl572sG/7ohhDQrCrTFGSn9LZcSw==}
+  '@fontsource/martel@5.3.0':
+    resolution: {integrity: sha512-E/L2GnnmYkcjgt6IMN9ISgr2ldDzSeO1J+aTMwWsOy+Ti4EEC8B9RHiU32kUMGiyI9Ot8JLzQ4FA39HH1tFfbQ==}
 
   '@img/colour@1.1.0':
     resolution: {integrity: sha512-Td76q7j57o/tLVdgS746cYARfSyxk8iEfRxewL9h4OMzYhbW4TAcppl0mT4eyqXddh6L/jwoM75mo7ixa/pCeQ==}
@@ -2759,8 +2744,6 @@ snapshots:
   '@cloudflare/workerd-windows-64@1.20260811.1':
     optional: true
 
-  '@cloudflare/workers-types@4.20260702.1': {}
-
   '@cspotcode/source-map-support@0.8.1':
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
@@ -3027,11 +3010,11 @@ snapshots:
   '@esbuild/win32-x64@0.28.1':
     optional: true
 
-  '@fontsource/courier-prime@5.3.0': {}
+  '@fontsource-variable/martian-mono@5.3.0': {}
 
-  '@fontsource/libre-baskerville@5.3.0': {}
+  '@fontsource/big-shoulders@5.3.0': {}
 
-  '@fontsource/open-sans@5.3.0': {}
+  '@fontsource/martel@5.3.0': {}
 
   '@img/colour@1.1.0': {}
 
@@ -5132,7 +5115,7 @@ snapshots:
       '@cloudflare/workerd-linux-arm64': 1.20260811.1
       '@cloudflare/workerd-windows-64': 1.20260811.1
 
-  wrangler@4.123.0(@cloudflare/workers-types@4.20260702.1):
+  wrangler@4.123.0:
     dependencies:
       '@cloudflare/kv-asset-handler': 0.5.0
       '@cloudflare/unenv-preset': 2.16.1(unenv@2.0.0-rc.24)(workerd@1.20260811.1)
@@ -5143,7 +5126,6 @@ snapshots:
       unenv: 2.0.0-rc.24
       workerd: 1.20260811.1
     optionalDependencies:
-      '@cloudflare/workers-types': 4.20260702.1
       fsevents: 2.3.3
     transitivePeerDependencies:
       - bufferutil

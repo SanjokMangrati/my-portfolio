@@ -1,0 +1,61 @@
+---
+interface Props {
+  lines?: number
+  top?: number
+  gap?: number
+  height?: number
+  draw?: boolean
+  class?: string
+}
+
+const { lines = 6, top = 70, gap = 56, height = 420, draw = false, class: className } = Astro.props
+
+const WIDTH = 1200
+const paths = Array.from({ length: lines }, (_, i) => {
+  const y = top + i * gap
+  return `M-20 ${y + 40} C 260 ${y - 30}, 520 ${y + 70}, 780 ${y + 10} S 1100 ${y - 40}, ${WIDTH + 20} ${y + 6}`
+})
+---
+
+<svg
+  class:list={['terraces', { 'terraces--draw': draw }, className]}
+  viewBox={`0 0 ${WIDTH} ${height}`}
+  preserveAspectRatio="none"
+  aria-hidden="true"
+  focusable="false"
+>
+  {paths.map((d, i) => <path d={d} pathLength="1" style={`--i: ${i}`} />)}
+</svg>
+
+<style>
+  .terraces {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    pointer-events: none;
+  }
+
+  path {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1;
+    vector-effect: non-scaling-stroke;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .terraces--draw path {
+      stroke-dasharray: 1;
+      stroke-dashoffset: 1;
+      animation: draw var(--duration-draw) cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+      animation-delay: calc(var(--i) * 80ms + 120ms);
+    }
+  }
+
+  @keyframes draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+</style>
