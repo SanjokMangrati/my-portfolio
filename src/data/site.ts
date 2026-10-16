@@ -18,7 +18,6 @@ export interface Project {
 
 export const SITE = {
   domain: 'smangrati.com',
-  version: 'v2.0',
   title: 'Sanjok Mangrati — Fullstack Developer',
   description:
     'Sanjok Mangrati — a fullstack developer from Darjeeling, India, building production systems with TypeScript, React, Node.js and PostgreSQL. Open to work.',
@@ -92,9 +91,8 @@ export const PROJECTS: Project[] = [
   },
 ]
 
-export const WORK_HISTORY = [
-  { role: 'Senior Software Developer', company: 'Fleapo Co.', start: '2025', end: null },
-  { role: 'Fullstack Developer', company: 'Fleapo Co.', start: '2023', end: '2025' },
+export const WORK_HISTORY: { role: string; company: string; start: string; end: string | null }[] = [
+  { role: 'Fullstack Developer', company: 'Fleapo Co.', start: '2023', end: '2026' },
 ]
 
 export const ALIAS = {

@@ -1,7 +1,7 @@
 ---
 import Icon from '~/components/Icon.astro'
 import Seal from '~/components/Seal.astro'
-import { GITHUB, LINKEDIN, PLACE, SITE } from '~/data/site'
+import { GITHUB, LINKEDIN, SITE } from '~/data/site'
 ---
 
 <hr class="rule" />
@@ -17,7 +17,7 @@ import { GITHUB, LINKEDIN, PLACE, SITE } from '~/data/site'
       </li>
     </ul>
     <p class="footer__fine">
-      Built at {PLACE.elevation} · {SITE.domain} · {SITE.version} · © {SITE.copyrightYear}
+      {SITE.domain} · © {SITE.copyrightYear}
     </p>
   </div>
 </footer>

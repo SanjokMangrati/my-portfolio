@@ -14,9 +14,8 @@ const { base = '' } = Astro.props
 
 <header class="wrap">
   <div class="topbar">
-    <a class="topbar__id" href={base || '#top'}>
+    <a class="topbar__id" href={base || '#top'} aria-label={`${PROFILE.name}, home`}>
       <Monogram class="topbar__mark" />
-      <span class="mono">{PROFILE.name}</span>
     </a>
 
     <nav class="topbar__nav" aria-label="Sections">
@@ -24,7 +23,6 @@ const { base = '' } = Astro.props
     </nav>
 
     <div class="topbar__end">
-      <span class="topbar__clock" data-clock aria-label="Local time in Darjeeling">IST</span>
       {PROFILE.openToWork && <StatusPill status="open" />}
       <button class="btn btn--quiet" type="button" data-theme-toggle aria-label="Switch color theme">
         <Icon name="theme" />
@@ -45,8 +43,6 @@ const { base = '' } = Astro.props
 
   .topbar__id {
     display: inline-flex;
-    align-items: center;
-    gap: var(--space-3);
     justify-self: start;
     color: var(--ink);
     text-decoration: none;
@@ -85,29 +81,12 @@ const { base = '' } = Astro.props
     gap: var(--space-4);
   }
 
-  .topbar__clock {
-    font-family: var(--font-mono);
-    font-stretch: 75%;
-    font-size: 12px;
-    letter-spacing: 0.06em;
-    color: var(--muscatel-text);
-    font-variant-numeric: tabular-nums;
-    white-space: nowrap;
-  }
-
-  @media (max-width: 860px) {
+  @media (max-width: 640px) {
     .topbar {
       grid-template-columns: 1fr auto;
     }
 
-    .topbar__nav,
-    .topbar__clock {
-      display: none;
-    }
-  }
-
-  @media (max-width: 420px) {
-    .topbar__id .mono {
+    .topbar__nav {
       display: none;
     }
   }

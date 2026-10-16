@@ -69,8 +69,8 @@ Terrace is the visual system for **smangrati.com**, the portfolio of Sanjok Mang
 
 ## Marks
 
-- `monogram-ink` / `monogram-mist`: SM in Big Shoulders Stencil inside a 3px stamp frame. Use at 32px in the top bar; ink on ground, mist on estate.
-- `seal-ink` / `seal-mist`: the monogram with `DARJEELING / 2,042 M / EST. 2023`, like a tea-chest mark. Footer only, at 232px wide.
+- `monogram-ink` / `monogram-mist`: SM in Big Shoulders Stencil inside a 3px stamp frame. Use at 32px in the top bar, on its own: the top bar shows no name and no clock (the live IST time lives in the metadata strip). Ink on ground, mist on estate.
+- `seal-ink` / `seal-mist`: the monogram with `BUILDING AT / 2,258 M`, like a tea-chest mark. Footer only, at 232px wide.
 - `wordmark-ink`: the name in Big Shoulders 900 as outlines, for social cards and the README of the repo, never on the site itself (the masthead is live text).
 - `favicon`: mist SM on an `estate` square.
 
@@ -81,4 +81,4 @@ These are what make the site Sanjok's and nobody else's. Keep all of them; add n
 2. The metadata strip with coordinates, elevation and the live IST clock.
 3. Projects as ledger rows; skills as a manifest with dotted leaders.
 4. Hairline rules with terminal crosses.
-5. One estate-green band at the end, closed by the stencil seal and "Built at 2,042 m".
+5. One estate-green band at the end, closed by the stencil seal reading "Building at 2,258 m".
